@@ -3,20 +3,20 @@
 if [ -z "$1" ]; then
     echo "Uso: check-ssh ips.txt [usuario]";
 else
-    port=22
-    connect_timeout=2
+    PORT=22
+    TIMEOUT=2
 
-    USUARIO=root
+    USER=root
     if [ -n "$2" ]; then
-        USUARIO="$2"
+        USER="$2"
     fi
 
-    while IFS= read -r server; do
-        ssh -n -q -o BatchMode=yes  -o StrictHostKeyChecking=no -o ConnectTimeout=$connect_timeout "ssh://$USUARIO@$server:$port" "exit 0"
-        if [ $? == 0 ];then
-           echo "SSH a $server -> OK"
+    while IFS= read -r SERVER; do
+        ssh -n -q -o BatchMode=yes  -o StrictHostKeyChecking=no -o ConnectTimeout=$TIMEOUT "ssh://$USER@$SERVER:$PORT" "exit 0"
+        if [ $? == 0 ]; then
+           echo "SSH a $SERVER -> OK"
         else
-           echo "SSH a $server -> ERROR"
+           echo "SSH a $SERVER -> ERROR"
         fi
     done < "$1"
 fi
