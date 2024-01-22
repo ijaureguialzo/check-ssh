@@ -5,7 +5,7 @@ Comprobar si hay conectividad SSH con una lista de direcciones IP almacenada en 
 ## Uso
 
 ```shell
-check-ssh ips.txt
+check-ssh ips.txt [usuario]
 ```
 
 ## Referencias
