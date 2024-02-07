@@ -4,12 +4,12 @@ if [ -z "$1" ]; then
     echo "Uso: check-web ips.txt";
 else
     while IFS= read -r SERVER; do
-        if curl --output /dev/null --silent --head --fail "http://$SERVER:80"; then
+        if curl --output /dev/null --silent --head --fail --connect-timeout 2 "http://$SERVER:80"; then
            echo "HTTP a $SERVER puerto 80 -> OK"
         else
            echo "HTTP a $SERVER puerto 80 -> ERROR"
         fi
-        if curl --output /dev/null --silent --head --fail "https://$SERVER:443"; then
+        if curl --output /dev/null --silent --head --fail --connect-timeout 2 "https://$SERVER:443"; then
            echo "HTTP a $SERVER puerto 443 -> OK"
         else
            echo "HTTP a $SERVER puerto 443 -> ERROR"
