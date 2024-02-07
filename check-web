@@ -9,7 +9,7 @@ else
         else
            echo "HTTP a $SERVER puerto 80 -> ERROR"
         fi
-        if curl --output /dev/null --silent --head --fail --connect-timeout 2 "https://$SERVER:443"; then
+        if curl --output /dev/null --silent --head --fail --connect-timeout 2 --insecure "https://$SERVER:443"; then
            echo "HTTP a $SERVER puerto 443 -> OK"
         else
            echo "HTTP a $SERVER puerto 443 -> ERROR"
