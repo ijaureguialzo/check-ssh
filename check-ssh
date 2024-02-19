@@ -12,10 +12,12 @@ else
     fi
 
     while IFS= read -r SERVER; do
-        if ssh -n -q -o BatchMode=yes -o StrictHostKeyChecking=no -o ConnectTimeout=$TIMEOUT "ssh://$USER@$SERVER:$PORT" "exit 0"; then
-           echo "SSH a $SERVER -> OK"
-        else
-           echo "SSH a $SERVER -> ERROR"
+        if [ -n "$SERVER" ]; then
+            if ssh -n -q -o BatchMode=yes -o StrictHostKeyChecking=no -o ConnectTimeout=$TIMEOUT "ssh://$USER@$SERVER:$PORT" "exit 0"; then
+               echo "SSH a $SERVER -> OK"
+            else
+               echo "SSH a $SERVER -> ERROR"
+            fi
         fi
     done < "$1"
 fi
